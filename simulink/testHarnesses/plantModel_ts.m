@@ -27,7 +27,7 @@ rho      = 1.225;
 
 %% simulation parameters
 init_azimuth = 0*pi/180;
-init_elev    = 30*pi/180;
+init_elev    = 90*pi/180;
 sphereRad    = 200;
 init_O_rKite = TcO(init_azimuth,init_elev)'*[0;0;-sphereRad];
 init_B_vKite = [0;0;0];
