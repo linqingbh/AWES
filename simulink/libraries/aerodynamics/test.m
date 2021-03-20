@@ -1,7 +1,7 @@
 clear
 % close all
 
-a = linspace(-20,20,501);
+a = linspace(-25,25,501);
 b = 0;
 da = 0*pi/180;
 de = 0*pi/180;

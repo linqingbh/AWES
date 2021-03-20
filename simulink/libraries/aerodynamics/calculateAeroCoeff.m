@@ -23,7 +23,7 @@ cZa  = pF(-5.4,1.23,10.2,a);
 cZq  = pF(-7.56,0.13,6.15,a);
 cZde = pF(-.32,0,0.29,a);
 
-CZ   = cZa.*a + cZq.*qH + cZde.*de;
+CZ   = 1*(cZa.*a + cZq.*qH + cZde.*de);
 
 %% CL
 cLb  = pF(-.06,0,0,a);
@@ -32,7 +32,7 @@ cLr  = pF(.18,.65,0,a);
 cLda = pF(-.25,.04,0,a);
 cLdr = pF(0,0,0,a);
 
-CL   = cLb.*b + cLp.*pH + cLr.*rH + cLda.*da + cLdr.*dr;
+CL   = 1*(cLb.*b + cLp.*pH + cLr.*rH + cLda.*da + cLdr.*dr);
 
 %% CM
 cMa  = pF(-.32,.21,0,a);
@@ -48,6 +48,6 @@ cNr  = pF(-.05,0,0,a);
 cNda = pF(.02,-.12,0,a);
 cNdr = pF(-.04,0,0,a);
 
-CN   = cNb.*b + cNp.*pH + cNr.*rH + cNda.*da + cNdr.*dr;
+CN   = 1*(cNb.*b + cNp.*pH + cNr.*rH + cNda.*da + cNdr.*dr);
 
 end

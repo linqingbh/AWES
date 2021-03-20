@@ -22,12 +22,12 @@ refChord = 0.55;
 refArea  = 3;
 
 %% environment parameters
-gravAccl = 9.81;
+gravAccl = 1*9.81;
 rho      = 1.225;
 
 %% simulation parameters
 init_azimuth = 0*pi/180;
-init_elev    = 90*pi/180;
+init_elev    = 70*pi/180;
 sphereRad    = 200;
 init_O_rKite = TcO(init_azimuth,init_elev)'*[0;0;-sphereRad];
 init_B_vKite = [0;0;0];
@@ -35,5 +35,5 @@ init_Euler   = [0;pi/2 - init_elev;pi];
 init_OwB     = [0;0;0];
 
 %% wind speed
-O_vWind = [20;0;0];
+O_vWind = [10;0;0];
 
