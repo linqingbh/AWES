@@ -1,10 +1,10 @@
-function [forceCoeff,momentCoeff] = aeroCoefficients(a,b,vA,angVel,refChord,...
+function [forceCoeff,momentCoeff] = calcAeroCoefficients(a,b,vA,angVel,refChord,...
     refSpan,csDef)
 %AEROCOEFFICIENTS Summary of this function goes here
 %   Detailed explanation goes here
 
 alphaMat  = [a^2 a 1]';
-angVelVec = ([refSpan;refChord;refSpan].*angVel(:))./(2*max(eps,norm(vA)));
+angVelVec = ([refSpan;refChord;refSpan].*angVel(:))./(2*vA);
 dAileron  = csDef(1);
 dElevator = csDef(2);
 dRudder   = csDef(3);
