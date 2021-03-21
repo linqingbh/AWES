@@ -14,9 +14,11 @@ refSpan = 5.5;
 refChord = 0.55;
 mass = 36.8;
 Jmat = [25 0 -.47;0 32 0; -.47 0 56];
+
+%% tether parameters
 dTet = 0.0025;
-rhoTet = 0.0046; %kg/m
 tetCD = 1.2;
+rhoTet = 0.0046; %kg/m
 
 %% environment parameters
 rhoAir   = 1.225; %kg/m^3
@@ -34,4 +36,5 @@ init_B_vKite = Rx(init_Euler(1))*Ry(init_Euler(2))*Rz(init_Euler(3))*...
 % inputs
 csDef      = [0;0;0]*pi/180;
 G_vWind  = [0;0;0];
+thrL     = norm(init_G_rKite);
 
