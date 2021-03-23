@@ -2,35 +2,43 @@ clear
 clc
 close all
 
+
+Rx = @(x) [1 0 0; 0 cos(x) sin(x); 0 -sin(x) cos(x)];
+Ry = @(y) [cos(y) 0 -sin(y); 0 1 0; sin(y) 0 cos(y)];
+Rz = @(z) [cos(z) sin(z) 0; -sin(z) cos(z) 0; 0 0 1];
+
 %% rapp kite parameters
 refArea = 3;
 refSpan = 5.5;
 refChord = 0.55;
-mass = 36.8;
-Jmat = [25 0 -.47;0 32 0; -.47 0 56];
-dTet = 0.0025;
-rhoTet = 0.0046; %kg/m
-tetCD = 1.2;
 rhoAir = 1.225; %kg/m^3
 
 %% test parameters
-kiteVelInG = [-10;0;-1];
-windVelInG = [0;0;0];
-angVel     = [0;0;0];
-csDef      = [0;0;0]*pi/180;
-yawPitchRoll = [0;0;0]*pi/180;
-
+timeVal = linspace(0,pi,101);
+% kite velocity
+O_vKx = 0.1;
+O_vKz = 0.0268*cos(timeVal+pi);
+O_vKite(3,:) = O_vKz;
+O_vKite(1,:) = O_vKx; 
+O_vKite_ts = timeseries(O_vKite,timeVal);
+% wind
+O_vWind = [0;0;0];
+% apparent vel
+O_vApp = O_vWind - O_vKite;
+% euler
+Euler = [0;180;0]*pi/180;
+BcO = Rx(Euler(1))*Ry(Euler(2))*Rz(Euler(3));
 
 %% test aerodynamic coefficient calculations
-a = linspace(-15,15,101);
+a = atan(O_vApp(3,:)./O_vApp(1,:))*180/pi;
 b = 0;
-vA = 10;
-angVel = [0;0;0];
+vA = norm(O_vApp);
+OwB = [0;0;0];
 csDef  = [0;0;0]*pi/180;
 
 for ii = 1:length(a)
 [Fcoeff(:,ii),Mcoeff(:,ii)] = calcAeroCoefficients(a(ii)*pi/180,...
-    b,vA,angVel,refChord,refSpan,csDef);
+    b,vA,OwB,refChord,refSpan,csDef);
 
 end
 
