@@ -17,7 +17,7 @@ pathAz = @(aBooth,bBooth,pathParam)-(aBooth.*sin(pathParam))./(aBooth.^2.*1.0./b
 pathEl = @(aBooth,bBooth,meanElevation,pathParam)meanElevation-(aBooth.^2.*1.0./bBooth.^2.*cos(pathParam).*sin(pathParam))./(aBooth.^2.*1.0./bBooth.^2.*cos(pathParam).^2+1.0);
 
 
-rotMat = [1;1;1];
+rotMat = [1;-1;-1];
 
 % initial conditions
 init_G_rKite = pathEq(aBooth,bBooth,meanEl,init_s,rad);

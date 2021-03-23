@@ -31,7 +31,7 @@ pathWidth = 60;
 pathHeight = pathWidth/5;
 pathElev   = 30;
 pathRad    = 100;
-forwardLen = 0.05;
+forwardLen = 0.1;
 initPathVar = 0.05*2*pi;
 
 %% airleron gains
@@ -42,9 +42,13 @@ aileron_tau = 0.5;
 
 %% test parameters
 % initial conditions
-init_speed = 8*norm(G_vWind);
+init_speed = 2*norm(G_vWind);
 [init_G_rKite,init_Euler,init_G_vKite,init_OwB,init_Az,init_El] = ...
     getInitConditions(initPathVar,pathWidth,pathHeight,pathElev,pathRad,init_speed);
+
+BcO = Rx(init_Euler(1))*Ry(init_Euler(2))*Rz(init_Euler(3));
+init_B_vKite = BcO*init_G_vKite;
+
 
 % inputs
 csDef   = [0;0;0]*pi/180;
