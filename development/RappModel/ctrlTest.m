@@ -9,7 +9,7 @@ cIn = maneuverabilityAdvanced;
 cIn.meanElevationInRadians = 30*pi/180;
 cIn.pathWidth = 60;
 cIn.pathHeight = 20;
-cIn.tetherLength = 100;
+cIn.tetherLength = 1;
 
 % kite velocity
 G_vK = 10*[0;1;1];
