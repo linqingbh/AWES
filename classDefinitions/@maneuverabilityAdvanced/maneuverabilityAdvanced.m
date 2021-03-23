@@ -88,6 +88,7 @@ classdef maneuverabilityAdvanced
         eqPathElevation
         eqPathCoordinates
         eqPathTangentInGndFrame
+        eqdiffG_pathTgt
         eqPathHeading
         eqPathCurvature
         eqPathLength
@@ -134,6 +135,7 @@ classdef maneuverabilityAdvanced
             G_path = [lemX; lemY; lemZ];
             % differentiate wrt s to get path tangent vector
             G_pathTgt = diff(G_path,s);
+            diffG_pathTgt = diff(G_pathTgt,s);
             % rotate path tangent vector to tangent frame
             TcG = obj.makeGroundToTangentialFrameRotMat(pathAzimuth,...
                 pathElevation);
@@ -171,6 +173,7 @@ classdef maneuverabilityAdvanced
             pathElevation = subs(pathElevation,oldSyms,newSyms);
             G_path        = subs(G_path,oldSyms,newSyms);
             G_pathTgt     = subs(G_pathTgt,oldSyms,newSyms);
+            diffG_pathTgt = subs(diffG_pathTgt,oldSyms,newSyms);
             reqHeading    = subs(reqHeading,oldSyms,newSyms);
             xKdXP_1stDir  = subs(xKdXP_1stDir,oldSyms,newSyms);
             xKdXP_2ndDir  = subs(xKdXP_2ndDir,oldSyms,newSyms);
@@ -182,6 +185,7 @@ classdef maneuverabilityAdvanced
             obj.eqPathElevation   = matlabFunction(pathElevation);
             obj.eqPathCoordinates = matlabFunction(G_path);
             obj.eqPathTangentInGndFrame = matlabFunction(G_pathTgt);
+            obj.eqdiffG_pathTgt = matlabFunction(diffG_pathTgt);
             obj.eqPathHeading   = matlabFunction(reqHeading);
             obj.eqxKdXP_1stDir  = matlabFunction(xKdXP_1stDir);
             obj.eqxKdXP_2ndDir  = matlabFunction(xKdXP_2ndDir);
