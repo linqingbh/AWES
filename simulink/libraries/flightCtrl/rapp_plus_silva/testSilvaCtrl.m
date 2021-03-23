@@ -34,6 +34,8 @@ tgtPt = tPt*cIn.tetherLength;
 
 
 pathVar = 2*pi*linspace(0,1,101);
+hd = cIn.eqPathHeading(cIn.aBooth,cIn.bBooth,...
+    cIn.meanElevationInRadians,pathVar,cIn.tetherLength);
 cIn.plotDome; axis equal;
 [~,pathCords] = cIn.plotLemniscate(pathVar);
 view(125,20)
